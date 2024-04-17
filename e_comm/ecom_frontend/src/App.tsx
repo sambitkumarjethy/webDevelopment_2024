@@ -27,11 +27,15 @@ const TransactionManagement = lazy(
   () => import("./pages/admin/management/transactionmanagement")
 );
 
+const Header = lazy(() => import("./components/header"));
+
 // END of Admin App Importing
 
 const App = () => {
   return (
     <Router>
+      {/* Header */}
+      <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
