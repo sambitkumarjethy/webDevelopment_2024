@@ -12,13 +12,18 @@ const user = { id: "5", role: "admin" };
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const logOutHandler = () => {
+    setIsOpen(false);
+  };
   return (
-    <nav>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/search"}>
+    <nav className="header">
+      <Link onClick={() => setIsOpen(false)} to={"/"}>
+        Home
+      </Link>
+      <Link onClick={() => setIsOpen(false)} to={"/search"}>
         <FaSearch />
       </Link>
-      <Link to={"/cart"}>
+      <Link onClick={() => setIsOpen(false)} to={"/cart"}>
         <FaShoppingBag />
       </Link>
       {user?.id ? (
@@ -32,7 +37,7 @@ const Header = () => {
                 <Link to="/admin/dashboard"> Admin</Link>
               )}
               <Link to="/orders">Orders</Link>
-              <button>
+              <button onClick={logOutHandler}>
                 <FaSignOutAlt />
               </button>
             </div>
