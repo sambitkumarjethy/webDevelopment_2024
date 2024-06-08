@@ -1,0 +1,49 @@
+/* src/styles/global.css */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+
+:root {
+  --primary-color: #4f46e5; /* Indigo 600 */
+  --primary-color-hover: #4338ca; /* Indigo 700 */
+  --background-color: #f3f4f6; /* Gray 100 */
+  --input-border-color: #d1d5db; /* Gray 300 */
+  --placeholder-color: #6b7280; /* Gray 500 */
+  --text-color: #111827; /* Gray 900 */
+  --gradient-from: #f3f4f6; /* Gray 100 */
+  --gradient-to: #e5e7eb; /* Gray 200 */
+  --gradient-text-from: #6366f1; /* Indigo 500 */
+  --gradient-text-to: #4f46e5; /* Indigo 600 */
+}
+
+body {
+  background: linear-gradient(
+    to right,
+    var(--gradient-from),
+    var(--gradient-to)
+  );
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Roboto", sans-serif;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    var(--gradient-text-from),
+    var(--gradient-text-to)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.shadow-animation {
+  animation: textShadow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes textShadow {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+}
