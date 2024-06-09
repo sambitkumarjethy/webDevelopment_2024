@@ -4,11 +4,11 @@ export const sidebarData = [
     path: "/dashboard",
   },
   {
-    name: "Projects",
+    name: "Functionality",
     children: [
       {
-        name: "Project A",
-        path: "/projects/a",
+        name: "Datatable",
+        path: "/dataTable",
       },
       {
         name: "Project B",

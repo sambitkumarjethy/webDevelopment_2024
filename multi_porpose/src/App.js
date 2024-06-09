@@ -6,10 +6,11 @@ import Sidebar from "./components/Sidebar";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import { navData } from "./data/navData";
 import { sidebarData } from "./data/sidebarData";
+import Listing from "./pages/Listing";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,6 +48,14 @@ const App = () => {
                 element={
                   <ProtectedRoute isAuthenticated={isAuthenticated}>
                     <Contact />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dataTable"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Listing />
                   </ProtectedRoute>
                 }
               />
