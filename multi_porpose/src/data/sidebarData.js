@@ -4,27 +4,56 @@ export const sidebarData = [
     path: "/dashboard",
   },
   {
-    name: "Functionality",
+    name: "SetUp",
     children: [
+      // {
+      //   name: "Datatable",
+      //   path: "/dataTable",
+      // },
       {
-        name: "Datatable",
-        path: "/dataTable",
+        name: "Financial Year",
+        path: "/finacial_year",
       },
       {
-        name: "Project B",
-        path: "/projects/b",
+        name: "Expense Type",
+        path: "/expense_type",
       },
       {
-        name: "Project C",
-        path: "/projects/c",
+        name: "Accounts Head",
+        path: "/accounts_head",
+      },
+      {
+        name: "Fund Source",
+        path: "/fund_source",
+      },
+      {
+        name: "Mapping",
+        // path: "/projects/c",
         children: [
           {
-            name: "Sub Project C1",
+            name: "Account to Fund Source",
             path: "/projects/c/c1",
           },
           {
-            name: "Sub Project C2",
+            name: "Head to monthly Budget",
+            path: "/projects/c/c1",
+          },
+          {
+            name: "Actual Expense",
             path: "/projects/c/c2",
+          },
+        ],
+      },
+      {
+        name: "Reports",
+        children: [
+          {
+            name: "Head wise Deviasion",
+            path: "/projects/c/c1",
+          },
+          {
+            name: "FY Ledger",
+            path: "/projects/c/c1",
           },
         ],
       },

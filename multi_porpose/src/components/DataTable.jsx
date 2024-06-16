@@ -55,6 +55,9 @@ const DataTable = ({ headers, data, rowsPerPage = 5 }) => {
       <table className="min-w-full bg-white">
         <thead>
           <tr>
+            <th className="py-2 px-4 border-b border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-700">
+              Sl. No
+            </th>
             {headers.map((header, index) => (
               <th
                 key={index}
@@ -68,6 +71,9 @@ const DataTable = ({ headers, data, rowsPerPage = 5 }) => {
         <tbody>
           {getCurrentData().map((row, rowIndex) => (
             <tr key={rowIndex}>
+              <td className="py-2 px-4 border-b border-gray-200 text-sm text-gray-700">
+                {(currentPage - 1) * rowsPerPage + rowIndex + 1}
+              </td>
               {headers.map((header, colIndex) => (
                 <td
                   key={colIndex}

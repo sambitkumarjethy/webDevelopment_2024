@@ -11,6 +11,8 @@ import { navData } from "./data/navData";
 import { sidebarData } from "./data/sidebarData";
 import Listing from "./pages/Listing";
 import Dashboard from "./pages/Dashboard";
+import AccountHead from "./pages/admin/AccountHead";
+import ExpenceType from "./pages/admin/ExpenceType";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -56,6 +58,22 @@ const App = () => {
                 element={
                   <ProtectedRoute isAuthenticated={isAuthenticated}>
                     <Listing />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/expense_type"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <ExpenceType />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/accounts_head"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <AccountHead />
                   </ProtectedRoute>
                 }
               />
