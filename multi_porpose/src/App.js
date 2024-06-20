@@ -13,6 +13,7 @@ import Listing from "./pages/Listing";
 import Dashboard from "./pages/Dashboard";
 import AccountHead from "./pages/admin/AccountHead";
 import ExpenceType from "./pages/admin/ExpenceType";
+import Formsubmit from "./pages/test/Formsubmit";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -77,6 +78,15 @@ const App = () => {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/test/form_submit"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Formsubmit />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route
                 path="*"
                 element={<Login setAuth={setIsAuthenticated} />}

@@ -26,36 +26,47 @@ export const sidebarData = [
         name: "Fund Source",
         path: "/fund_source",
       },
+    ],
+  },
+  {
+    name: "Mapping",
+    // path: "/projects/c",
+    children: [
       {
-        name: "Mapping",
-        // path: "/projects/c",
-        children: [
-          {
-            name: "Account to Fund Source",
-            path: "/projects/c/c1",
-          },
-          {
-            name: "Head to monthly Budget",
-            path: "/projects/c/c1",
-          },
-          {
-            name: "Actual Expense",
-            path: "/projects/c/c2",
-          },
-        ],
+        name: "Account to Fund Source",
+        path: "/projects/c/c1",
       },
       {
-        name: "Reports",
-        children: [
-          {
-            name: "Head wise Deviasion",
-            path: "/projects/c/c1",
-          },
-          {
-            name: "FY Ledger",
-            path: "/projects/c/c1",
-          },
-        ],
+        name: "Head to monthly Budget",
+        path: "/projects/c/c1",
+      },
+      {
+        name: "Actual Expense",
+        path: "/projects/c/c2",
+      },
+    ],
+  },
+
+  {
+    name: "Reports",
+    children: [
+      {
+        name: "Head wise Deviasion",
+        path: "/projects/c/c1",
+      },
+      {
+        name: "FY Ledger",
+        path: "/projects/c/c1",
+      },
+    ],
+  },
+  {
+    name: "Pre Project",
+    // path: "/projects/c",
+    children: [
+      {
+        name: "Form Submit",
+        path: "/test/form_submit",
       },
     ],
   },
