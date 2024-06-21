@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import AccountHead from "./pages/admin/AccountHead";
 import ExpenceType from "./pages/admin/ExpenceType";
 import Formsubmit from "./pages/test/Formsubmit";
+import PostCreate from "./pages/blog/PostCreate";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -83,6 +84,14 @@ const App = () => {
                 element={
                   <ProtectedRoute isAuthenticated={isAuthenticated}>
                     <Formsubmit />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/blog/post_create"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <PostCreate />
                   </ProtectedRoute>
                 }
               />

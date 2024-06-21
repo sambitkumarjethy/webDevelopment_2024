@@ -61,12 +61,22 @@ export const sidebarData = [
     ],
   },
   {
-    name: "Pre Project",
+    name: "Form Submit",
     // path: "/projects/c",
     children: [
       {
         name: "Form Submit",
         path: "/test/form_submit",
+      },
+    ],
+  },
+  {
+    name: "Blog",
+    // path: "/projects/c",
+    children: [
+      {
+        name: "Post",
+        path: "/blog/post_create",
       },
     ],
   },
