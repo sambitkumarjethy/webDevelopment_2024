@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const PostCreate = () => {
+  const [title, setTitle] = useState("");
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post("http://localhost:4000/post", { title });
+    setTitle("");
+  };
   return (
     <div className="flex items-start justify-start min-h-screen p-8 bg-gray-100">
       <div className="w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6">Create Post</h1>
-        <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+        <form
+          className="bg-white p-6 rounded-lg shadow-md w-full max-w-md"
+          onSubmit={onSubmit}
+        >
           <div className="mb-4">
             <label
               htmlFor="title"
@@ -16,6 +26,8 @@ const PostCreate = () => {
             <input
               type="text"
               id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Enter title"
             />
