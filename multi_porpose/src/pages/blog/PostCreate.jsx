@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import PostList from "./PostList";
 
 const PostCreate = () => {
   const [title, setTitle] = useState("");
@@ -39,6 +40,11 @@ const PostCreate = () => {
             Submit
           </button>
         </form>
+      </div>
+      <hr className="my-8 w-full" />
+      <div className="w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-6">Posts</h1>
+        <PostList />
       </div>
     </div>
   );
