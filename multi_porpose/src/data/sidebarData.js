@@ -78,6 +78,10 @@ export const sidebarData = [
         name: "Post",
         path: "/blog/post_create",
       },
+      {
+        name: "comment",
+        path: "/blog/comment_create",
+      },
     ],
   },
   {
