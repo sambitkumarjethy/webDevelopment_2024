@@ -1,12 +1,12 @@
 import React from "react";
-import { Counter } from "./features/counter/Counter";
 import "./App.css";
-import ProductList from "./features/product-list/Product-list";
+import LoginPage from "./pages/LoginPage";
+import Signup from "./features/auth/components/Signup";
 
 function App() {
   return (
     <div className="App">
-      <ProductList />
+      <LoginPage />
     </div>
   );
 }
