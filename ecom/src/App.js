@@ -12,6 +12,7 @@ import {
 import Home from "./pages/Home";
 import Signup from "./features/auth/components/Signup";
 import CartPage from "./pages/CartPage";
+import CheckOut from "./pages/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <CartPage />,
+  },
+  {
+    path: "/checkout",
+    element: <CheckOut />,
   },
 ]);
 
