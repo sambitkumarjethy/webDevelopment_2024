@@ -11,10 +11,18 @@ export function fetchAllproducts() {
 
 export function fetchProductsByFilter(filter) {
   // filter = {"category":"groceries"}
+  // filter = {"category":["groceries","smart_phone"]}
+  // sort = {_sort:"price",_order="desc"}
   // TODO : on server we will support multiple values
   let querystring = "";
+
   for (let key in filter) {
     querystring += `${key}=${filter[key]}&`;
+    // const categoryValues = filter[key];
+    // if (categoryValues.length > 1) {
+    //   const lastCategoryValue = categoryValues[categoryValues.length - 1];
+    //   querystring += `${key}=${filter[lastCategoryValue]}&`;
+    // }
   }
   return new Promise(async (resolve) => {
     // TODO: we will not hard code server URL
