@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   decrement,
-//   increment,
-//   incrementAsync,
-//   selectCount,
-// } from "../productListSlice";
+import {
+  fetchAllproductsAsync,
+  selectAllProducts,
+  fetchAllproductsFiltersAsync,
+} from "../productSlice";
 
 import {
   Dialog,
@@ -29,56 +28,63 @@ import {
   Squares2X2Icon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  StarIcon,
 } from "@heroicons/react/20/solid";
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
   { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
   { name: "Price: Low to High", href: "#", current: false },
   { name: "Price: High to Low", href: "#", current: false },
 ];
-const subCategories = [
-  { name: "Totes", href: "#" },
-  { name: "Backpacks", href: "#" },
-  { name: "Travel Bags", href: "#" },
-  { name: "Hip Bags", href: "#" },
-  { name: "Laptop Sleeves", href: "#" },
-];
+// const subCategories = [
+//   { name: "Totes", href: "#" },
+//   { name: "Backpacks", href: "#" },
+//   { name: "Travel Bags", href: "#" },
+//   { name: "Hip Bags", href: "#" },
+//   { name: "Laptop Sleeves", href: "#" },
+// ];
 const filters = [
-  {
-    id: "color",
-    name: "Color",
-    options: [
-      { value: "white", label: "White", checked: false },
-      { value: "beige", label: "Beige", checked: false },
-      { value: "blue", label: "Blue", checked: true },
-      { value: "brown", label: "Brown", checked: false },
-      { value: "green", label: "Green", checked: false },
-      { value: "purple", label: "Purple", checked: false },
-    ],
-  },
   {
     id: "category",
     name: "Category",
     options: [
-      { value: "new-arrivals", label: "New Arrivals", checked: false },
-      { value: "sale", label: "Sale", checked: false },
-      { value: "travel", label: "Travel", checked: true },
-      { value: "organization", label: "Organization", checked: false },
-      { value: "accessories", label: "Accessories", checked: false },
+      { value: "beauty", label: "beauty", checked: false },
+      { value: "fragrances", label: "fragrances", checked: false },
+      { value: "furniture", label: "furniture", checked: false },
+      { value: "groceries", label: "groceries", checked: false },
     ],
   },
   {
-    id: "size",
-    name: "Size",
+    id: "brand",
+    name: "Brands",
     options: [
-      { value: "2l", label: "2L", checked: false },
-      { value: "6l", label: "6L", checked: false },
-      { value: "12l", label: "12L", checked: false },
-      { value: "18l", label: "18L", checked: false },
-      { value: "20l", label: "20L", checked: false },
-      { value: "40l", label: "40L", checked: true },
+      { value: "essence", label: "Essence", checked: false },
+      { value: "glamour_beauty", label: "Glamour Beauty", checked: false },
+      { value: "velvet_touch", label: "Velvet Touch", checked: false },
+      { value: "chic_cosmetics", label: "Chic Cosmetics", checked: false },
+      { value: "nail_couture", label: "Nail Couture", checked: false },
+      { value: "calvin_klein", label: "Calvin Klein", checked: false },
+      { value: "chanel", label: "Chanel", checked: false },
+      { value: "dior", label: "Dior", checked: false },
+      {
+        value: "dolce_&_gabbana",
+        label: "Dolce & Gabbana",
+        checked: false,
+      },
+      { value: "gucci", label: "Gucci", checked: false },
+      {
+        value: "annibale_colombo",
+        label: "Annibale Colombo",
+        checked: false,
+      },
+      { value: "furniture_co.", label: "Furniture Co.", checked: false },
+      { value: "knoll", label: "Knoll", checked: false },
+      { value: "bath_trends", label: "Bath Trends", checked: false },
+      { value: "Apple", label: "Apple", checked: false },
+      { value: "Amazon", label: "Amazon", checked: false },
+      { value: "Microsoft", label: "Microsoft", checked: false },
+      { value: "Samsung", label: "Samsung", checked: false },
+      { value: "Google", label: "Google", checked: false },
     ],
   },
 ];
@@ -87,53 +93,25 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const products = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 2,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
-    imageAlt: "Front of men's Basic Tee in white.",
-    price: "$35",
-    color: "White",
-  },
-  {
-    id: 3,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg",
-    imageAlt: "Front of men's Basic Tee in gray.",
-    price: "$35",
-    color: "Gray",
-  },
-  {
-    id: 4,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg",
-    imageAlt: "Front of men's Basic Tee in blue.",
-    price: "$35",
-    color: "Blue",
-  },
-];
-
 export default function ProductList() {
   // const count = useSelector(selectCount);
-  //  const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [filter, setFilter] = useState({});
+  const products = useSelector(selectAllProducts);
+  console.log(products);
+
+  useEffect(() => {
+    dispatch(fetchAllproductsAsync());
+  }, [dispatch]);
+
+  const handleFilter = (e, section, option) => {
+    const newFilter = { ...filter, [section.id]: option.value };
+    setFilter(newFilter);
+    dispatch(fetchAllproductsFiltersAsync(newFilter));
+
+    console.log(section.id, option.value);
+  };
 
   return (
     <div>
@@ -170,7 +148,6 @@ export default function ProductList() {
                 {/* Filters */}
                 <form className="mt-4 border-t border-gray-200">
                   <h3 className="sr-only">Categories</h3>
-
                   {filters.map((section) => (
                     <Disclosure
                       key={section.id}
@@ -180,7 +157,7 @@ export default function ProductList() {
                       <h3 className="-mx-2 -my-3 flow-root">
                         <DisclosureButton className="group flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                           <span className="font-medium text-gray-900">
-                            {section.name}
+                            {section.title}
                           </span>
                           <span className="ml-6 flex items-center">
                             <PlusIcon
@@ -250,9 +227,9 @@ export default function ProductList() {
                   >
                     <div className="py-1">
                       {sortOptions.map((option) => (
-                        <MenuItem key={option.name}>
+                        <MenuItem key={option.title}>
                           <a
-                            href={option.href}
+                            href={option}
                             className={classNames(
                               option.current
                                 ? "font-medium text-gray-900"
@@ -332,6 +309,9 @@ export default function ProductList() {
                                 id={`filter-${section.id}-${optionIdx}`}
                                 name={`${section.id}[]`}
                                 type="checkbox"
+                                onChange={(e) =>
+                                  handleFilter(e, section, option)
+                                }
                                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                               />
                               <label
@@ -354,38 +334,54 @@ export default function ProductList() {
                   <div className="bg-white">
                     <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
                       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-                        {products.map((product) => (
-                          <Link to="/product-detail" key={product.id}>
-                            <div key={product.id} className="group relative">
-                              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                <img
-                                  alt={product.imageAlt}
-                                  src={product.imageSrc}
-                                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                                />
-                              </div>
-                              <div className="mt-4 flex justify-between">
-                                <div>
-                                  <h3 className="text-sm text-gray-700">
-                                    <a href={product.href}>
-                                      <span
-                                        aria-hidden="true"
-                                        className="absolute inset-0"
-                                      />
-                                      {product.name}
-                                    </a>
-                                  </h3>
-                                  <p className="mt-1 text-sm text-gray-500">
-                                    {product.color}
-                                  </p>
+                        {products &&
+                          products?.map((product) => (
+                            <Link to="/product-detail" key={product.id}>
+                              <div
+                                key={product.id}
+                                className="group relative border-solid  border-2 border-gray-200 p-2"
+                              >
+                                <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
+                                  <img
+                                    alt={product.title}
+                                    src={product.thumbnail}
+                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                                  />
                                 </div>
-                                <p className="text-sm font-medium text-gray-900">
-                                  {product.price}
-                                </p>
+                                <div className="mt-4 flex justify-between">
+                                  <div>
+                                    <h3 className="text-sm text-gray-700">
+                                      <a href={product.thumbnail}>
+                                        <span
+                                          aria-hidden="true"
+                                          className="absolute inset-0"
+                                        />
+                                        {product.title}
+                                      </a>
+                                    </h3>
+                                    <p className="mt-1 text-sm text-gray-500 ml-0">
+                                      <StarIcon className="w-5 h-5 inline" />
+                                      <span className="align-bottom">
+                                        {product.rating}
+                                      </span>
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-900">
+                                      ${" "}
+                                      {Math.round(
+                                        product.price *
+                                          (1 - product.discountPercentage / 100)
+                                      )}
+                                    </p>
+                                    <p className="text-sm line-through font-medium text-gray-400">
+                                      ${product.price}
+                                    </p>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                          </Link>
-                        ))}
+                            </Link>
+                          ))}
                       </div>
                     </div>
                   </div>
@@ -396,18 +392,18 @@ export default function ProductList() {
             {/* Pagination */}
             <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
               <div className="flex flex-1 justify-between sm:hidden">
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
                   Previous
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="#"
                   className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
                   Next
-                </a>
+                </Link>
               </div>
               <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                 <div>
@@ -422,13 +418,13 @@ export default function ProductList() {
                     aria-label="Pagination"
                     className="isolate inline-flex -space-x-px rounded-md shadow-sm"
                   >
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                     >
                       <span className="sr-only">Previous</span>
                       <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
-                    </a>
+                    </Link>
                     {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
                     <a
                       href="#"
