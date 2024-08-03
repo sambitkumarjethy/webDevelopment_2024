@@ -98,33 +98,50 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [filter, setFilter] = useState({});
+  const [sort, setSort] = useState({});
   const products = useSelector(selectAllProducts);
   console.log(products);
 
   useEffect(() => {
     //  dispatch(fetchAllproductsAsync());
-    dispatch(fetchAllproductsFiltersAsync(filter));
-  }, [dispatch, filter]);
+    console.log({ filter });
+
+    dispatch(fetchAllproductsFiltersAsync({ filter, sort }));
+  }, [dispatch, filter, sort]);
 
   const handleSort = (e, option) => {
-    const newFilter = { ...filter, _sort: option.sort, order: option.order };
-    setFilter(newFilter);
-    dispatch(fetchAllproductsFiltersAsync(newFilter));
+    const sort = { _sort: option.sort, order: option.order };
+    setSort(sort);
   };
 
   const handleFilter = (e, section, option) => {
+    console.log({ e, section, option, filter });
     let newFilter = { ...filter };
 
     // TODO :  on server it will support multiple categories
     if (e.target.checked) {
-      newFilter[section.id] = option.value;
+      if (newFilter[section.id]) {
+        newFilter[section.id].push(option.value);
+      } else {
+        newFilter[section.id] = [option.value];
+      }
     } else {
-      delete newFilter[section.id];
+      const index = newFilter[section.id].findIndex(
+        (el) => el === option.value
+      );
+      console.log(newFilter, index);
+      if (index > -1) {
+        newFilter[section.id].splice(index, 1);
+      }
+      // If the array becomes empty after removal, you might want to delete the key
+      if (newFilter[section.id].length === 0) {
+        delete newFilter[section.id];
+      }
     }
     setFilter(newFilter);
-    dispatch(fetchAllproductsFiltersAsync(newFilter));
+    //  dispatch(fetchAllproductsFiltersAsync(newFilter));
 
-    console.log(section.id, option.value);
+    console.log({ sort });
   };
 
   return (
