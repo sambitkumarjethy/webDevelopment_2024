@@ -4,11 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Namste React</title>
+      <link rel="stylesheet" href="./index.css" ></link>
   </head>
   <body>
-    <div id="root"></div>
+    <div>hello top of root</div>
+    <div id="root"><h1>Sambit</h1></div>
+    <div>hello bellow of root</div>
   </body>
-  <script
+    <script
     crossorigin
     src="https://unpkg.com/react@18/umd/react.development.js"
   ></script>
@@ -16,10 +19,6 @@
     crossorigin
     src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
   ></script>
-  <script>
-    const heading = React.createElement("h1", {}, "Hello world from React !");
-    const root = ReactDOM.createRoot(document.getElementById("root"));
 
-    root.render(heading);
-  </script>
+  <script src="./App.js"></script>
 </html>
