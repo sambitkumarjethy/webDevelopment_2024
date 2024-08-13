@@ -85,6 +85,20 @@ export const sidebarData = [
     ],
   },
   {
+    name: "Code Editor",
+    path: "/editor",
+  },
+  {
+    name: "TODO",
+    // path: "/projects/c",
+    children: [
+      {
+        name: "List",
+        path: "/todos/list",
+      },
+    ],
+  },
+  {
     name: "About",
     path: "/about",
   },

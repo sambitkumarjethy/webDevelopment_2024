@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "./styles.css";
 
-const DataTable = ({ headers, data, rowsPerPage = 5 }) => {
+const DataTable = ({ headers, data, rowsPerPage = 5, action = [] }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleClick = (pageNumber) => {
@@ -74,14 +75,23 @@ const DataTable = ({ headers, data, rowsPerPage = 5 }) => {
               <td className="py-2 px-4 border-b border-gray-200 text-sm text-gray-700">
                 {(currentPage - 1) * rowsPerPage + rowIndex + 1}
               </td>
-              {headers.map((header, colIndex) => (
-                <td
-                  key={colIndex}
-                  className="py-2 px-4 border-b border-gray-200 text-sm text-gray-700"
-                >
-                  {row[header]}
-                </td>
-              ))}
+              {headers.map((header, colIndex) =>
+                header == "Actions" ? (
+                  <td
+                    key={colIndex}
+                    className="py-2 px-4 border-b border-gray-200 text-sm text-gray-700"
+                  >
+                    <span className="icon-container">{row[header]}</span>
+                  </td>
+                ) : (
+                  <td
+                    key={colIndex}
+                    className="py-2 px-4 border-b border-gray-200 text-sm text-gray-700"
+                  >
+                    {header}.{row[header]}
+                  </td>
+                )
+              )}
             </tr>
           ))}
         </tbody>

@@ -1,0 +1,17 @@
+.icon-container {
+  display: inline !important;
+  margin: 0 5px !important;
+  color: red;
+  cursor: pointer;
+}
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: inline !important;
+  vertical-align: middle;
+}
