@@ -99,6 +99,52 @@ export const sidebarData = [
     ],
   },
   {
+    name: "Hooks",
+    // path: "/projects/c",
+    children: [
+      {
+        name: "useState",
+        path: "/hooks/usestate",
+      },
+      {
+        name: "useEffect",
+        path: "/hooks/useeffect",
+      },
+      {
+        name: "useRef",
+        path: "/hooks/useRef",
+      },
+      {
+        name: "useMemo",
+        path: "/hooks/usememo",
+      },
+      {
+        name: "useCallback",
+        path: "/hooks/usecallback",
+      },
+      {
+        name: "useContext",
+        path: "/hooks/usecontext",
+      },
+      {
+        name: "useContext",
+        path: "/hooks/usecontext",
+      },
+      {
+        name: "useReducer",
+        path: "/hooks/usereducer",
+      },
+      {
+        name: "useLayOutEffect",
+        path: "/hooks/uselayouteffect",
+      },
+      {
+        name: "CustomHook",
+        path: "/hooks/costomHooks",
+      },
+    ],
+  },
+  {
     name: "About",
     path: "/about",
   },

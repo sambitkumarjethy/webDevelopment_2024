@@ -18,6 +18,7 @@ import PostCreate from "./pages/blog/PostCreate";
 import CommentCreate from "./pages/blog/CommentCreate";
 import CdeEditor from "./pages/codeeditor/CdeEditor";
 import TodoList from "./pages/todo/TodoList";
+import UsestateHook from "./pages/hooks/UsestateHook";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -111,6 +112,14 @@ const App = () => {
                 element={
                   <ProtectedRoute isAuthenticated={isAuthenticated}>
                     <TodoList />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/hooks/usestate"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <UsestateHook />
                   </ProtectedRoute>
                 }
               />
