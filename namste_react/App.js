@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 const heading = React.createElement(
   "h1",
   { id: "heading" },
@@ -26,7 +29,7 @@ const sibling = React.createElement("div", { id: "parrent" }, [
     React.createElement(
       "h1",
       { id: "heading" },
-      "Hello world from nested component !"
+      "Hello world from nested component  sambit!"
     ),
     React.createElement("h2", {}, "I Am h2 as a sibling component !"),
   ]),
