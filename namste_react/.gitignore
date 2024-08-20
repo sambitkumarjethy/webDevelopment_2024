@@ -1,3 +1,6 @@
 /node_modules
 /dist
 /.parcel-cache
+/food_app/node_modules
+/food_app/.parcel-cache
+/food_app/dist
