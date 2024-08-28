@@ -11,11 +11,11 @@ const RestroCard = (props) => {
     sla: { deliveryTime },
   } = resData?.info;
 
-  console.log(resData?.info);
+  // console.log(resData?.info);
 
   return (
     <div className="res-card">
-      <h3>{name}</h3>
+      <h3>xx{name}</h3>
       <img className="res-logo" src={CDN_URL + cloudinaryImageId} alt="" />
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating}</h4>

@@ -30,7 +30,7 @@
 }
 
 .res-card:hover {
-  border: 1px solid black;
+  border: 1px solid rgb(13, 200, 75);
   cursor: pointer;
 }
 
@@ -58,4 +58,11 @@
 .login {
   padding: 0 20px;
   cursor: pointer;
+}
+.search-btn {
+  margin: 10px;
+}
+
+.filter {
+  display: flex;
 }
