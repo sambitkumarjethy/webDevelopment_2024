@@ -22,6 +22,8 @@ import UsestateHook from "./pages/hooks/UsestateHook";
 import UseEffectHook from "./pages/hooks/UseEffectHook";
 import UseContextHook from "./pages/hooks/UseContextHook";
 import LoginContextProvider from "./context/LoginContextProvider";
+import UseRefHook from "./pages/hooks/UseRefHook";
+import UseReducerHook from "./pages/hooks/UseReducerHook";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -141,6 +143,23 @@ const App = () => {
                   element={
                     <ProtectedRoute isAuthenticated={isAuthenticated}>
                       <UseContextHook />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="/hooks/useRef"
+                  element={
+                    <ProtectedRoute isAuthenticated={isAuthenticated}>
+                      <UseRefHook />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/hooks/usereducer"
+                  element={
+                    <ProtectedRoute isAuthenticated={isAuthenticated}>
+                      <UseReducerHook />
                     </ProtectedRoute>
                   }
                 />
