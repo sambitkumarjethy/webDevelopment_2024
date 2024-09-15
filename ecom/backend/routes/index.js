@@ -6,9 +6,11 @@ const UserSignUpController = require("../controller/userSignUp");
 const userSigninController = require("../controller/userSignIn");
 const userDetailController = require("../controller/userDetail");
 const authToken = require("../middleware/authToken");
+const userLogout = require("../controller/userLogout");
 
 router.post("/signup", UserSignUpController);
 router.post("/signin", userSigninController);
 router.get("/user-details", authToken, userDetailController);
+router.get("/userLogout", userLogout);
 
 module.exports = router;
