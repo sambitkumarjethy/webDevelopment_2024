@@ -18,6 +18,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 // on demand loading
 
 const Grocerry = lazy(() => import("./components/Grocerry"));
+const LiveChat = lazy(() => import("./components/LiveChat"));
 const AppLayout = () => {
   return (
     <div className="app">
@@ -52,6 +53,15 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: "/livechat",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <LiveChat />
+          </Suspense>
+        ),
+      },
+
       {
         path: "/restorants/:resId",
         element: <RestaurantMenu />,

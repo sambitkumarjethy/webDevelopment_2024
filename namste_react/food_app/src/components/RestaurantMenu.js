@@ -16,8 +16,21 @@ const RestaurantMenu = () => {
   const costForTwo = resInfo?.cards?.[2]?.card?.card?.info?.costForTwo || "N/A";
 
   const itemCards =
-    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[4]?.card
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card?.itemCards || [];
+
+  console.log(resInfo?.cards);
+  {
+    /**  console.log(resInfo?.cards);
+    0 - > Restorant name
+    1 -> Order online
+    2 -> ratings and detail info
+    3 -> Deals for you (offer h scroll)
+    4 ->  resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[index]?.card
+      ?.card?.itemCards ( upto index 9 accordian recipee card ) -> index 10 and 11 footer
+    
+    */
+  }
 
   return (
     <div className="menu">
@@ -30,7 +43,7 @@ const RestaurantMenu = () => {
       <ul>
         {itemCards.map((item) => (
           <li key={item?.card?.info?.id}>
-            {item?.card?.info?.name || "Unnamed Item"} - Price Rs.{" "}
+            {item?.card?.info?.name || "Unnamed Item"} - Price Rs.
             {item?.card?.info?.price ? item?.card?.info?.price / 100 : "N/A"}
           </li>
         ))}
