@@ -1,0 +1,175 @@
+<h1>A . USER-PROFILE - ( <b>Staand Alone Component</b> )</h1>
+<h2>1. Interpollation - using the variables from the defined class</h2>
+<ul>
+  <li>NAME - {{ name.toUpperCase() }}</li>
+  <li>STATUS - {{ Status }}</li>
+  <li>SALARY - {{ salary }}</li>
+  <li>
+    <b>Double courly braces is used to use the defined variables in ts file</b>
+  </li>
+</ul>
+<hr />
+<h2>
+  2. Property Binding ( <button [disabled]="isBtnDisablled">Click Me</button> )
+</h2>
+<ul>
+  <li>EX- [disabled]="isBtnDisablled"</li>
+  <b
+    ><li>isBtnDisablled is defined in typescript file (true/false)</li>
+    <li>
+      [disabled] [] square bracket is used to bind the property directly
+    </li></b
+  >
+</ul>
+<hr />
+<h2>3. Event Binding</h2>
+<b>Type and see the console - </b>
+<input type="text" (input)="onchange($event)" />
+<ul>
+  <li>
+    we can use $event to pass the event (e) in the event ex-
+    (input)="onchange($event)"
+  </li>
+  <li>
+    onchange(e:Event) ->
+    <b
+      >const value = (e?.target as HTMLInputElement).value;
+      console.log(value)</b
+    >
+  </li>
+</ul>
+
+<hr />
+<h2>4. Two way Data Binding</h2>
+<h4>
+  INPUT VALUE - {{ twowayvalue }} -- the value entered is disolayed in html
+  using Interpollation (A)
+</h4>
+<!-- <input type="text" [value]="inputvalue" (input)="onchange($event)" /> -->
+<input type="text" [(ngModel)]="twowayvalue" />
+
+<ul>
+  <li>
+    The way the input the html file and ts file data gets binded is called two
+    way data binding
+  </li>
+  <li>
+    onchange($event) is used to bind the value to the ts file - event Binding
+    (c)
+  </li>
+  <li>[(ngModel)]="twowayvalue" - <b> BANANA IN THE BOX </b></li>
+</ul>
+
+<hr />
+
+<h2>
+  5. Directives Loop - *ngFor Loop with
+  <b>*ngIf="user.salary > 1000; else noSalary condition</b>
+</h2>
+<div *ngFor="let user of users">
+  <div *ngIf="user.salary > 1000; else noSalary">
+    <h4>
+      {{ user.name }} - {{ user.isSingle ? "Single" : "Married" }} -
+      {{ user.salary }}
+    </h4>
+  </div>
+  <ng-template #noSalary>
+    <h4>
+      {{ user.name }} - {{ user.isSingle ? "Single" : "Married" }} - **** (else
+      condition)
+    </h4>
+  </ng-template>
+</div>
+<hr />
+<h2>6. Parrent to child data communication</h2>
+<app-componet-one
+  user_name="Ramesh"
+  called="1st time "
+  isSingle="true"
+  salary="400"
+/>
+<app-componet-one
+  user_name="Tendulkar"
+  called="2nd Time"
+  isSingle="false"
+  salary="500"
+/>
+<app-componet-one
+  user_name="Nitish"
+  called="3rd Time"
+  isSingle="true"
+  salary="5454"
+/>
+<hr />
+<p>Looping through users array</p>
+<app-componet-one
+  *ngFor="let u of users"
+  [user_name]="u.name"
+  [called]="u.called"
+  [isSingle]="u.isSingle"
+  [salary]="u.salary"
+/>
+<hr />
+<h2>7. Child to Parrent data communication</h2>
+
+<app-componet-one
+  *ngFor="let u of users"
+  [user_name]="u.name"
+  [called]="u.called"
+  [isSingle]="u.isSingle"
+  [salary]="u.salary"
+  (myEvent)="receivedData($event)"
+/>
+<h3>Notes</h3>
+<ul>
+  <li>Create a button in the child component (ex- componet-one)</li>
+  <li>On click event call sendData function</li>
+  <li>
+    In the send data .ts file in the class add atTherate Output() myEvent ( Ex -
+    atTherate Output() myEvent = new EventEmitterUser())
+  </li>
+  <li>
+    create a function sendData() and pass the updated object using 'emit'
+    keyword. (ex- this.myEvent.emit( name:this.name,newSalary:20000)) emit to be
+    passed as object
+  </li>
+  <li>
+    Call the child component from parrent component (Ex- app-componet-one)
+  </li>
+  <li>Pass a event and call a function receiveData with $event as argument</li>
+  <li>
+    In the receiveData function recieve the data from child and update the
+    parrent data using your logic
+  </li>
+</ul>
+
+<hr />
+<h2>8. Pipes</h2>
+
+<ul>
+  <li>NAME - {{ name | titlecase }}</li>
+  <li>STATUS - {{ Status | uppercase }}</li>
+
+  <li>SALARY - {{ salary | currency : "INR" }}</li>
+  <li>Phone No - {{ phoneno | countryCode : "USA" }}</li>
+  <li>
+    <b>Double courly braces is used to use the defined variables in ts file</b>
+  </li>
+</ul>
+
+<h3>Notes</h3>
+<ul>
+  <li>
+    Pipes is the inbuilt feature which heleps to transform or format the text in
+    view page
+  </li>
+  <li>
+    ex of inbuilt pipes - currency, lowercase , uppercase, titlecase , etc
+  </li>
+  <li>we can create coustom pites using CLI - ng g p [pipename]</li>
+  <li>[attherate] pipe decorator is used in the class</li>
+  <li>we can also pass argument to inbuilt as well as custom class</li>
+</ul>
+
+<hr />
+<h2>9. Custom Pipes</h2>

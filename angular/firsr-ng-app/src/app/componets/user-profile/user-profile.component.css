@@ -1,0 +1,22 @@
+h1 {
+  background-color: blueviolet;
+  color: whitesmoke;
+}
+h2 {
+  color: red;
+}
+h2 b {
+  color: blueviolet;
+}
+p {
+  font-size: 22px;
+  font-weight: bold;
+  color: rgb(13, 97, 12);
+}
+li {
+  padding: 7px;
+  font-size: 18px;
+}
+h3 {
+  text-decoration: underline;
+}
