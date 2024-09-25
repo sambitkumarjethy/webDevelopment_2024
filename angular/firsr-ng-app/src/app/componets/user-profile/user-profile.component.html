@@ -172,4 +172,73 @@
 </ul>
 
 <hr />
-<h2>9. Custom Pipes</h2>
+<h2>9. Custom Directive</h2>
+<div class="coding" appHeighlight [style.color]="txtcolor">
+  Name - {{ name }} => Status - {{ isSingle ? "Coder" : "Manager" }} Salary
+  {{ salary }}
+</div>
+<h3>Note</h3>
+<ul>
+  <li>Create Custom Directive CLI - ng g d directives/heighlight</li>
+  <li>By using directive we can change the behabiour/Property of html</li>
+  <li>
+    We can add event listner [ HostBinding("style.backgroundColor") ,
+    HostListener("mouseenter") ]
+  </li>
+</ul>
+
+<hr />
+<h2>10. Dependency Injection</h2>
+<div appCustomstyling>Here dependency Injection is done</div>
+
+<h3>Note</h3>
+<ul>
+  <li>
+    It consist of accessmodifier and element --- > constructor( private
+    el:ElementRef )
+  </li>
+</ul>
+
+<hr />
+<h2>11. Life cycle methods</h2>
+<h3>List of Life cycle methods</h3>
+<ul>
+  <li>constructor - 1st constructor gets called</li>
+  <li>ngOnInit -</li>
+  <li>ngOnChanges -</li>
+  <li>ngOnDestroy -</li>
+  <li>ngAfterViewInit -</li>
+</ul>
+
+<h3>Note</h3>
+<ul>
+  <li>
+    The prefined methods that gets called automatically by angular in component
+    is called life cycle methods
+  </li>
+  <li>
+    Constructor - It is called automatically in a class when instance of class
+    is created
+  </li>
+  <li>In constuctor we can define</li>
+
+  1. The properties of class (init properties) 2 .dependency injection 3. event
+  listner
+</ul>
+<div class="coding" #myheading>
+  Name - {{ name }} => Status - {{ isSingle ? "Coder" : "Manager" }} Salary
+  {{ salary }}
+</div>
+<button (click)="clear()">Clear Users</button>
+<hr />
+<h2>12. Services</h2>
+<app-joke />
+<h3>Notes</h3>
+<ul>
+  <li>CLI command - ng g s services/joke</li>
+</ul>
+<hr />
+<h2>13. Global state management using services & Signal</h2>
+
+<app-a />
+<app-b1 />
