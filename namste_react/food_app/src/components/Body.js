@@ -62,7 +62,7 @@ const Body = () => {
             }}
           ></input>
           <button
-            className="search-btn px-4 py-1 bg-pink-200 mx-4 rounded-lg"
+            className="search-btn px-4 py-1 bg-yellow-200 mx-4 rounded-lg"
             onClick={() => {
               const filteredRestaurant = listOfRestaurants.filter((res) => {
                 return res.info.name
@@ -79,12 +79,13 @@ const Body = () => {
         </div>
         <div className="m-4 p-4 flex items-center">
           <button
-            className="filter-btn px-4 py-2 bg-pink-100 rounded-lg"
+            className="filter-btn px-4 py-2 bg-yellow-100 rounded-lg"
             onClick={() => {
+              console.log("top rated");
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > "4.5"
               );
-              setListOfRestaurants(filteredList);
+              setFilteredRestaurant(filteredList);
               //  console.log(listOfRestaurants);
             }}
           >

@@ -8,13 +8,16 @@ export const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="flex justify-between bg-yellow-100 shadow-md shadow-pink-400 sm:bg-pink-100">
+    <div className="flex justify-between bg-yellow-100 shadow-md shadow-yellow-400 sm:bg-yellow-100">
       <div className="logo-container">
-        <img
+        <div className="text-yellow-700 font-extrabold text-4xl my-6 mx-10  ">
+          <Link to="/">🍽️ Namste Restro😋</Link>
+        </div>
+        {/*  <img
           className="w-48 bg-transparent  bg-opacity-100 md:bg-opacity-50"
           src={LOGO_URL}
           alt="logo"
-        />
+        />*/}
       </div>
       <div className="flex items-center  ">
         <ul className="flex p-4 m-4 ">
