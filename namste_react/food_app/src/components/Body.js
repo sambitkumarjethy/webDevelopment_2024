@@ -1,9 +1,10 @@
 import RestroCard, { withPurevegLabel } from "./RestroCard";
 // import resList from "../utils/mockdata";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -46,6 +47,8 @@ const Body = () => {
   if (onlineStatus === false) {
     return <h1>Lokks like u r offline!! Check internet status !!!</h1>;
   }
+
+  const { setUserName, loggedIn } = useContext(userContext);
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -91,6 +94,16 @@ const Body = () => {
           >
             Top Rated Restaurant
           </button>
+        </div>
+        <div className="m-4 p-4 flex items-center">
+          <label className="mx-2">UserName : </label>
+          <input
+            className="border border-black p-2"
+            value={loggedIn}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
         </div>
       </div>
       <div className="res-container flex flex-wrap ">

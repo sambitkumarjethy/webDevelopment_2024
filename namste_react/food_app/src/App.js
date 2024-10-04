@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import ErrorPage from "./components/ErrorPage";
 import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocerry from "./components/Grocerry";
+import userContext from "./utils/UserContext";
 
 // chunking
 // code splitting
@@ -20,11 +21,24 @@ import RestaurantMenu from "./components/RestaurantMenu";
 const Grocerry = lazy(() => import("./components/Grocerry"));
 const LiveChat = lazy(() => import("./components/LiveChat"));
 const AppLayout = () => {
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    // Authentication code
+    // make a API call and send username
+    const data = {
+      name: "Sambit Jethy",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <userContext.Provider value={{ loggedIn: userName, setUserName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </userContext.Provider>
   );
 };
 
