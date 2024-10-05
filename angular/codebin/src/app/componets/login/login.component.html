@@ -1,0 +1,15 @@
+<form class="container" [formGroup]="loginForm">
+  <h4>Please Login</h4>
+  <input type="email" placeholder="Email Here" [formControl]="email" />
+  <h5 class="" [hidden]="email.untouched || email.valid">
+    Enter correct Email
+  </h5>
+  <input type="password" placeholder="Password Here" [formControl]="password" />
+  <h5 class="" [hidden]="password.untouched || password.valid">
+    Password is required and must be Greater then 8 charecters.
+  </h5>
+  <button class="btn-green" [disabled]="loginForm.invalid" (click)="login()">
+    Login
+  </button>
+  <button class="btn-red" (click)="reset()">Reset</button>
+</form>

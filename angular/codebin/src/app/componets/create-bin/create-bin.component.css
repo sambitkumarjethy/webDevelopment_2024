@@ -1,0 +1,94 @@
+/* Container styling */
+.container {
+  width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+/* Heading styles */
+.container h4 {
+  text-align: center;
+  color: #333;
+}
+
+.container h5 {
+  color: red;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* Input field styling */
+.container input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Input focus state */
+.container input[type="text"]:focus,
+.container textarea:focus {
+  border-color: #66afe9;
+  outline: none;
+}
+
+/* Textarea styling */
+.container textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #040b53; /* Deep blue background */
+  color: #ffffff; /* White text color */
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Textarea focus state */
+.container textarea:focus {
+  border-color: #5c6bc0;
+  outline: none;
+}
+
+/* Button styling */
+.container button {
+  padding: 10px 15px;
+  margin: 10px 5px 0 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+}
+
+/* Button hover state */
+.container button:hover {
+  opacity: 0.9;
+}
+
+/* Green button */
+.btn-green {
+  background-color: #4caf50;
+}
+
+/* Red button */
+.btn-red {
+  background-color: #f44336;
+}
+
+/* Disable button when form is invalid */
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

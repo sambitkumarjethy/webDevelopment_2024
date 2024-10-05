@@ -1,0 +1,26 @@
+<p>servers works!</p>
+
+<h2>
+  Import of component (server component) to another component (servers component
+  )
+</h2>
+<button
+  [disabled]="!allowNewServer"
+  class="btn btn-primary"
+  (click)="onCreateServer()"
+>
+  Add Server
+</button>
+<p *ngIf="serverCreated; else noServer">{{ serverCreationStatus }}</p>
+<ng-template #noServer><P>No server was created</P></ng-template>
+
+<app-server *ngFor="let server of servers"></app-server>
+
+<label>Server Name</label>
+<input type="text" class="form-control" (input)="onUpdateServerName($event)" />
+Server Name {{ serverName }}
+
+<h4><b>Two way data binding</b></h4>
+<input type="text" class="form-control" [(ngModel)]="serverName" />
+<input type="text" class="form-control" [(ngModel)]="serverIP" />
+{{ serverName }} {{ serverIP }}

@@ -1,0 +1,8 @@
+<p>The Server componet</p>
+<b>1. Dtat Binding</b>
+<p
+  [ngStyle]="{backgroundColor :getColor()}"
+  [ngClass]="{online: serverStatus === 'Online'}"
+>
+  {{"Server"}} With ID {{ serverId }} is {{ getServerStatus() }}
+</p>

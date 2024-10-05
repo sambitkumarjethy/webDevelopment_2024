@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Hi {{ name }}, {{ address }}</h3>
+      <input type="text" [(ngModel)]="name" />
+      <button type="button" class="btn btn-primary" (click)="changeName()">
+        Change Name
+      </button>
+      <hr />
+      <!-- <app-servers></app-servers> -->
+
+      <!-- Selection by attribute selector -->
+      <!-- <div app-servers></div> -->
+      <!-- Selection by class selector -->
+      <div class="app-servers"></div>
+    </div>
+  </div>
+</div>
