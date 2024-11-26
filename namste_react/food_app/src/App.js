@@ -11,6 +11,8 @@ import ErrorPage from "./components/ErrorPage";
 import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocerry from "./components/Grocerry";
 import userContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 // chunking
 // code splitting
@@ -33,12 +35,14 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <userContext.Provider value={{ loggedIn: userName, setUserName }}>
-      <div className="app">
-        <Header />
-        <Outlet />
-      </div>
-    </userContext.Provider>
+    <Provider store={appStore}>
+      <userContext.Provider value={{ loggedIn: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </userContext.Provider>
+    </Provider>
   );
 };
 
