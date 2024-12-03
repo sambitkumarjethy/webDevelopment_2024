@@ -13,6 +13,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import userContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 // chunking
 // code splitting
@@ -83,6 +84,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restorants/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <ErrorPage />,

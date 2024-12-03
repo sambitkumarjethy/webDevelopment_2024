@@ -49,7 +49,7 @@ export const Header = () => {
           </li>
           <li className="relative px-4 text-lg font-bold hover:font-bold hover:text-orange-600 hover:bg-white hover:rounded-2xl">
             <span className="absolute -top-2 right-0 text-sm bg-orange-600 text-white px-1   rounded-full">
-              {cartItems.length}
+              <Link to="/cart">{cartItems.length}</Link>
             </span>
             🛒
           </li>

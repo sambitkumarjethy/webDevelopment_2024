@@ -50,7 +50,7 @@ const Body = () => {
 
   const { setUserName, loggedIn } = useContext(userContext);
 
-  return listOfRestaurants.length === 0 ? (
+  return listOfRestaurants && listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -67,12 +67,14 @@ const Body = () => {
           <button
             className="search-btn px-4 py-1 bg-yellow-200 mx-4 rounded-lg"
             onClick={() => {
-              const filteredRestaurant = listOfRestaurants.filter((res) => {
-                return res.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase());
-                // return res.info.name.includes("Seasons Restaurant");
-              });
+              const filteredRestaurant =
+                listOfRestaurants &&
+                listOfRestaurants.filter((res) => {
+                  return res.info.name
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase());
+                  // return res.info.name.includes("Seasons Restaurant");
+                });
 
               setFilteredRestaurant(filteredRestaurant);
             }}
@@ -85,9 +87,9 @@ const Body = () => {
             className="filter-btn px-4 py-2 bg-yellow-100 rounded-lg"
             onClick={() => {
               console.log("top rated");
-              const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRating > "4.5"
-              );
+              const filteredList =
+                listOfRestaurants &&
+                listOfRestaurants.filter((res) => res.info.avgRating > "4.5");
               setFilteredRestaurant(filteredList);
               //  console.log(listOfRestaurants);
             }}
@@ -107,21 +109,22 @@ const Body = () => {
         </div>
       </div>
       <div className="res-container flex flex-wrap ">
-        {filteredRestaurant.map((restaurant) => (
-          <Link
-            to={"/restorants/" + restaurant.info.id}
-            key={restaurant.info.id}
-          >
-            {/** if the resorant card has veg:true then add lebel Pure Veg 
+        {filteredRestaurant &&
+          filteredRestaurant.map((restaurant) => (
+            <Link
+              to={"/restorants/" + restaurant.info.id}
+              key={restaurant.info.id}
+            >
+              {/** if the resorant card has veg:true then add lebel Pure Veg 
                restaurant?.info?.veg ? <RestaurantCardPureveg  resData={restaurant}/> :  <RestroCard resData={restaurant} />
               */}
-            {restaurant?.info?.veg ? (
-              <RestaurantCardPureveg resData={restaurant} />
-            ) : (
-              <RestroCard resData={restaurant} />
-            )}
-          </Link>
-        ))}
+              {restaurant?.info?.veg ? (
+                <RestaurantCardPureveg resData={restaurant} />
+              ) : (
+                <RestroCard resData={restaurant} />
+              )}
+            </Link>
+          ))}
       </div>
     </div>
   );
