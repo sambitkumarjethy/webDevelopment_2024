@@ -1,17 +1,17 @@
-import React from "react";
-import avatar from "../../img/avatar.png";
-import { menuItems } from "../../Utils/menuItems";
-import { signout } from "../../Utils/Icons";
+import React, { useState } from "react";
 import styled from "styled-components";
+import avatar from "../../img/avatar.png";
+import { signout } from "../../utils/Icons";
+import { menuItems } from "../../utils/menuItems";
 
-const Navigation = ({ active, setActive }) => {
+function Navigation({ active, setActive }) {
   return (
     <NavStyled>
       <div className="user-con">
-        <img src={avatar} alt="avtar" />
-        <div className="txt">
+        <img src={avatar} alt="" />
+        <div className="text">
           <h2>Sambit</h2>
-          <h2>Your Money</h2>
+          <p>Your Money</p>
         </div>
       </div>
       <ul className="menu-items">
@@ -22,7 +22,8 @@ const Navigation = ({ active, setActive }) => {
               onClick={() => setActive(item.id)}
               className={active === item.id ? "active" : ""}
             >
-              {item.icon} <span>{item.title}</span>
+              {item.icon}
+              <span>{item.title}</span>
             </li>
           );
         })}
@@ -32,7 +33,7 @@ const Navigation = ({ active, setActive }) => {
       </div>
     </NavStyled>
   );
-};
+}
 
 const NavStyled = styled.nav`
   padding: 2rem 1.5rem;
